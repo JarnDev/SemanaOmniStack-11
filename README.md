@@ -1,7 +1,7 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/jarn40/SemanaOmniStack-11?style=for-the-badge)
 ![GitHub](https://img.shields.io/github/license/jarn40/SemanaOmniStack-11?style=for-the-badge)
 # SemanaOmniStack-11
-Projeto Base da Semana OmniStack 11.
+Projeto Base da Semana OmniStack 11. Com algumas melhorias Pessoais.
 
 Cronograma:
 
