@@ -10,6 +10,12 @@ Cronograma:
       - [x] CORS
       - [x] SQL (sqlite)
       - [x] Knex
+      - Adição Pessoal 
+        - [x] Express-Session ( Autentication e controle de acesso )
+        - [x] Express-Validator ( Validação de dados das requisiçoes)
+        - [x] Autenticação melhorada, ( email + senha) ong_id salva em cookie de sessão
+        - [x] Documentação da API -  :ledger: [PT_BR](./backend/API_DOC_PT_BR.md) | :ledger: [EN_US](./backend/API_DOC_EN.md)
+        - [ ] Tests :hammer:
   - [ ] React :hammer:
   - [ ] React Native :hammer:
 
