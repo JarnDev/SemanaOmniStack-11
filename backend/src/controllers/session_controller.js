@@ -35,7 +35,6 @@ class SessionController{
     
     logout(){
         return async (req, res) => {
-            console.log( 'OK')
             if(!req.session.ong_id){
                 return res.status(400).json({ error: "Usuário não está logado."})
             }
