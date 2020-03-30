@@ -8,7 +8,7 @@ const app = express()
 
 app.use(cors({
     'exposedHeaders':'X-Ong-Name, X-Total-Count',
-    'origin': 'http://localhost:3000',
+    'origin': ['http://localhost:3000'],
     'credentials': true
 }))
 app.use(express.json())

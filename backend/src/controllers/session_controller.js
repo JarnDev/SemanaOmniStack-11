@@ -24,11 +24,18 @@ class SessionController{
 
             const hashed_password = crypto.createHash('sha256').update(`${password}`).digest('HEX')
 
-            const [ result ] = await db_connection('ongs').whereRaw('email=? AND password=?',[email, hashed_password])
+            // const [ result ] = await db_connection('ongs').whereRaw('email=? AND password=?',[email, hashed_password])
+
+            const [ result ] = await db_connection('ongs').where('email',email)
             
             if(!result){
                 return res.status(401).json({error: 'Ong não Cadastrada!'})
             }
+            
+            if(result.password !== hashed_password ){
+                return res.status(401).json({error: 'Senha Incorreta!'})
+            }
+
             req.session.ong_id = result.id
             
             res.header('X-Ong-Name', result.name)
