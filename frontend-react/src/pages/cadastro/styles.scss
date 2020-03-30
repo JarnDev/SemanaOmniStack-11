@@ -1,0 +1,74 @@
+
+.containerCadastro{
+
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
+
+.asideSection{
+    margin-right: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    img{
+        width: 100%;
+    }
+
+    h3{
+        margin-top: 20px;
+    }
+
+    .link{
+    
+        svg{
+            margin-right: .5em;
+        }
+    
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        font-size: 12px;
+        margin-top: 20px;
+        transition: opacity 0.2s;
+    
+        &:hover{
+            opacity: 0.3
+        }
+    }
+}
+
+.conteudo{
+    display: flex;
+    flex-direction: row;
+    max-width: 1000px;
+    min-width: 300px;
+    max-height: 500px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 50px 30px;
+    margin: 20px;
+    
+}
+
+.inputGroup{
+    display: flex;
+    input+input{
+        margin-left: 10px;
+    }
+}
+
+@media (max-width:500px){
+    .conteudo{
+        flex-direction: column;
+        max-height: 600px;
+    }
+    .asideSection{
+        margin-right: 0;
+    }
+}

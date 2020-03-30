@@ -1,0 +1,19 @@
+form{
+    textarea{
+        // border: 1px solid black;
+        width: 100%;
+        min-height: 20%;
+        max-height: 60%;
+        resize: vertical;
+    }
+}
+
+@media (max-width:700px){
+    form{
+        textarea{
+            // border: 1px solid black;
+            min-height: 20%;
+            max-height: 150px;
+        }
+    }
+ }

@@ -1,0 +1,59 @@
+
+$primaryColor:palevioletred;
+
+
+.container{
+
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+
+
+    .formSection{
+        margin-right: 50px;
+
+        form{
+            margin-top: 20px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+
+            .link{
+
+                svg{
+                    margin-right: .5em;
+                }
+
+                display: flex;
+                align-items: center;
+                text-decoration: none;
+                font-size: 12px;
+                margin-top: 20px;
+                color: #de2041;
+                transition: opacity 0.2s;
+
+                &:hover{
+                    opacity: 0.3
+                }
+            }
+
+        }
+
+    }
+
+}
+
+
+@media (max-width:900px){
+   .container{
+        .heroImg{
+           display: none;
+        }
+        .formSection{
+            margin-right: 0px;
+        }
+   }
+}
