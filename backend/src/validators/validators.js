@@ -16,9 +16,9 @@ module.exports = {
     ],
 
     createCasoValidator : [
-        check("title").isLength({min:2}).notEmpty(),
-        check("description").isLength({min:10}),
-        check("value").isFloat({min:0})
+        check("title", 'Minimo 2 letras.').isLength({min:2}),
+        check("description",'Pelomenos 10 letras.').isLength({min:10}),
+        check("value", 'Valor deve ser positivo.').isFloat({min:0})
     ]
 
 

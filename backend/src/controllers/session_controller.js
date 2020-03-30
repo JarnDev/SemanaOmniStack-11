@@ -26,9 +26,13 @@ class SessionController{
 
             const [ result ] = await db_connection('ongs').whereRaw('email=? AND password=?',[email, hashed_password])
             
+            if(!result){
+                return res.status(401).json({error: 'Ong não Cadastrada!'})
+            }
             req.session.ong_id = result.id
-
-            return res.status(200).send();
+            
+            res.header('X-Ong-Name', result.name)
+            return res.status(200).send("1");
 
         }
     }

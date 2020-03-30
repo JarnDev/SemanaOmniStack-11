@@ -42,6 +42,15 @@ Endpoint responsável pelo loguin das ONGs
         
 + Response 200
 
+    + Headers
+
+             X-Ong-Name: "Nome da ONG"
+
++ Response 401 (application/json)
+    
+        {
+            "error": "Ong não cadastrada!"
+        }
 
 ### LOGOUT [DELETE]
 Endpoint para logout
@@ -204,6 +213,20 @@ Endpoint para cadastro de um novo caso
 + Parameters
 
     + id:1 (string,required) - Id do caso
+
+### EDITAR [PUT]
+Endpoint para Edicão de um caso.
+::: warning
+#### <i class="fa fa-warning"></i> Importante
+É necessário estar logado, pois apenas a ONG que cadastrou o caso pode editá-lo
+:::
++ Response 204
+
++ Response 401 (application/json)
+
+        { 
+            "error" : 'Operação não Autorizada!'
+        }
 
 ### DELETAR [DELETE]
 Endpoint para remoção de um caso.

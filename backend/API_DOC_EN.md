@@ -42,6 +42,10 @@ Endpoint responsable for ONGs login
         
 + Response 200
 
+    + Headers
+
+            X-Ong-Name: "Ong Name"
+
 ### LOGOUT [DELETE]
 Endpoint responsable for Logout
 + Response 204
@@ -203,6 +207,24 @@ Authentication is required, cases (incidentes) are linked to ONGs.
 + Parameters
 
     + id:1 (string,required) - Case`s Id
+
+### EDIT [PUT]
+Endpoint that edit a case.
+::: warning
+#### <i class="fa fa-warning"></i> Important
+Authentication is required, only the ONG that created the case can edit it.
+:::
+
++ Response 204
+
++ Response 401 (application/json)
+
+        { 
+            "error" : 'Unauthorized Operation!'
+        }
+
+        
+
 
 ### REMOVE [DELETE]
 Endpoint that removes a case.

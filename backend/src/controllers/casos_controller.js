@@ -65,6 +65,24 @@ class CasosController{
         }
     }
 
+    editCaso(){
+
+        return async (req, res) => {
+            const { id } = req.params;
+            const {title, description, value} = req.body
+            
+            const { ong_id } = req.session
+
+            if( !ong_id ){
+                return res.status(401).json({ error: 'Operação não Autorizada!'});
+            }
+
+            await db_connection('casos').where('id', id).update({title:title, description:description, value:value});
+
+            return res.status(204).send();
+        }
+
+    }
 
     deleteCaso(){
         return async (req, res) => {

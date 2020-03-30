@@ -14,6 +14,7 @@ router.route(casosRoute.index)
 
 router.route(casosRoute.caso_id)
     .delete(casosController.deleteCaso())
+    .put(casosController.editCaso())
 
 
 
