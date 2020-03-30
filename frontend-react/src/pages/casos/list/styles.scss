@@ -35,7 +35,12 @@
             margin-right: 20px;
             height: 50px;
         }
-        button{
+        .powerOff{
+            transition: 0.2s;
+            &:hover{
+                cursor: pointer;
+                box-shadow: 0px 0px 4px black;
+            }
             width: 50px;
             height: 50px;
             background: transparent;

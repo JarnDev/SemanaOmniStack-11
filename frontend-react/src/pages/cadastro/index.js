@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { FiArrowLeft } from 'react-icons/fi'
+import { useForm, ErrorMessage } from 'react-hook-form'
 
 import './styles.scss'
 
@@ -9,15 +10,11 @@ import api from '../../services/api'
 import logoImg from '../../assets/logo.svg'
 export default function Cadastro() {
     const history = useHistory()
-    const [name, setName] = useState()
-    const [password, setPassword] = useState()
-    const [email, setEmail] = useState()
-    const [whatsapp, setWhatsapp] = useState()
-    const [city, setCity] = useState()
-    const [uf, setUf] = useState()
+    const { register, handleSubmit, errors  } = useForm()
 
-    function handleSubmit(e){
-        e.preventDefault()
+    function onSubmit(formData){
+        const {name, password, email, whatsapp, city, uf} = formData
+
         api.post('/ongs', {
             name,
             password,
@@ -43,16 +40,36 @@ export default function Cadastro() {
                 </Link>
             </section>
 
-            <form onSubmit={handleSubmit}>
-                <input placeholder='Nome' onChange={(e) => setName(e.target.value)} required></input>
-                <input type='password' placeholder='Password' onChange={(e) => setPassword(e.target.value)} required></input>
-                <input placeholder='E-mail' onChange={(e) => setEmail(e.target.value)} required></input>
-                <input type='number' placeholder='Whatsapp' onChange={(e) => setWhatsapp(e.target.value)} required></input>
+            <form onSubmit={handleSubmit(onSubmit)}>
+
+                <input placeholder='Nome' name='name' ref ={ register({required: 'Required'}) }></input>
+                <ErrorMessage className='inputError' errors={errors} name="name" as="span" />
+
+                <input type='password' name='password' placeholder='Password' ref ={ register({required:'Required', minLength:{value:8, message:'Min lenght 8'}}) }></input>
+                <ErrorMessage className='inputError' errors={errors} name="password" as="span" />
+
+                <input type='email' placeholder='E-mail' name='email' ref ={ register({required:'Required'}) }></input>
+                <ErrorMessage className='inputError' errors={errors} name="email" as="span" />
+
+                <input type='number' placeholder='Whatsapp' name='whatsapp' ref ={ register({required:'Required',
+                                                                                             minLength:{value:10, message:'Min lenght 10'} ,
+                                                                                             maxLength:{value:11, message:'Max lenght 11'}}) }></input>
+                <ErrorMessage className='inputError' errors={errors} name="whatsapp" as="span" />
+
                 <div className='inputGroup'>
-                    <input placeholder='Cidade' onChange={(e) => setCity(e.target.value)} required></input>
-                    <input placeholder='UF' maxLength="2" style={{ width: 80}} onChange={(e) => setUf(e.target.value)} required></input>
+                    <div className='input'>
+                        <input placeholder='Cidade' name='city' ref ={ register({required:'Required'}) }></input>
+                        <ErrorMessage className='inputError' errors={errors} name="city" as="span" />
+                    </div>
+                    <div className='input' style={{ width: 80}}>
+                        <input placeholder='UF' maxLength="2" name='uf' ref ={ register({required:'Required'}) }></input>
+                        <ErrorMessage className='inputError' errors={errors} name="uf" as="span" />
+                    </div>
+
                 </div>
-                <button type='submit'>Cadastrar</button>
+
+                <button className='button' type='submit'>Cadastrar</button>
+
             </form>
 
             </div>

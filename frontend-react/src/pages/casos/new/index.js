@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { FiArrowLeft } from 'react-icons/fi'
-
+import { useForm, ErrorMessage } from 'react-hook-form'
 
 import api from '../../../services/api'
 
@@ -9,13 +9,12 @@ import './styles.scss'
 
 import logoImg from '../../../assets/logo.svg'
 export default function NewCase() {
-    const [title, setTitle] = useState()
-    const [description, setDescription] = useState()
-    const [value, setValue] = useState()
-    const history = useHistory()
 
-    function handleSubmit(e){
-        e.preventDefault()
+    const history = useHistory()
+    const { register, handleSubmit, errors  } = useForm()
+
+    function onSubmit(formData){
+        const { title, description, value } = formData
         api.post('/casos',{
             title,
             description,
@@ -38,12 +37,18 @@ export default function NewCase() {
                     </Link>
                 </section>
 
-                <form onSubmit={handleSubmit}>
-                    <input placeholder='Titulo' onChange={(e) => setTitle(e.target.value)} required />
-                    <textarea placeholder='Descrição' onChange={(e) => setDescription(e.target.value)} required />
-                    <input type='number' placeholder='Valor' onChange={(e) => setValue(e.target.value)} required />
+                <form onSubmit={handleSubmit(onSubmit)}>
+
+                    <input placeholder='Titulo' name='title' ref={register({required:'Required'})} />
+                    <ErrorMessage className='inputError' errors={errors} name="title" as="span" />
+
+                    <textarea placeholder='Descrição' name='description' ref={register({required:'Required', minLength:{value:10, message:'Min length 10'}})} />
+                    <ErrorMessage className='inputError' errors={errors} name="description" as="span" />
+
+                    <input type='number' placeholder='Valor' min='0' name='value' ref={register({required:'Required'})} />
+                    <ErrorMessage className='inputError' errors={errors} name="value" as="span" />
                     
-                    <button type='submit'>Cadastrar</button>
+                    <button className='button' type='submit'>Cadastrar</button>
                 </form>
 
             </div>

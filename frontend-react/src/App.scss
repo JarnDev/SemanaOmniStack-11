@@ -13,10 +13,10 @@ $primaryColor:palevioletred;
 
 form{
   input{
-    color: $primaryColor;
+    // color: $primaryColor;
     font-weight: 500;
     padding: 0.5em;
-    margin: 0.5em 0 ;
+    margin: 0.1em 0 ;
     background: #fff;
     border: 1px solid #7159c1;
     border-radius: 3px;
@@ -30,7 +30,7 @@ form{
 
 }
 
-.button, button{
+.button{
 
   &:hover{
     cursor: pointer;
@@ -45,4 +45,9 @@ form{
   border-radius: 3px;
   color:white;
   font-weight: 500;
+}
+
+.inputError{
+  font-size: 10px;
+  color: red;
 }

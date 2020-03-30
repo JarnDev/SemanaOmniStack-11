@@ -58,8 +58,13 @@
 
 .inputGroup{
     display: flex;
-    input+input{
-        margin-left: 10px;
+
+    .input{
+        width: 100%;
+    }
+
+    .input+.input{
+        margin-left: .2em;
     }
 }
 

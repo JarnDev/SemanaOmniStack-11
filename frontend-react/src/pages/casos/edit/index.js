@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { FiArrowLeft } from 'react-icons/fi'
+import { useForm, ErrorMessage } from 'react-hook-form'
 
 
 import api from '../../../services/api'
@@ -10,13 +11,17 @@ import api from '../../../services/api'
 import logoImg from '../../../assets/logo.svg'
 export default function EditCaso(props) {
     const { caso } = props.location.state
-    const [title, setTitle] = useState(caso.title)
-    const [description, setDescription] = useState(caso.description)
-    const [value, setValue] = useState(caso.value)
     const history = useHistory()
+    const { register, handleSubmit, errors  } = useForm({
+        defaultValues:{
+            title: caso.title,
+            description: caso.description,
+            value: caso.value
+        }
+    })
     
-    function handleSubmit(e){
-        e.preventDefault()
+    function onSubmit(formData){
+        const { title, description, value } = formData
         api.put(`/casos/${caso.id}`, {
             title,
             description,
@@ -40,12 +45,17 @@ export default function EditCaso(props) {
                     </Link>
                 </section>
 
-                <form onSubmit={handleSubmit}>
-                    <input placeholder='Titulo' onChange={(e) => setTitle(e.target.value)} value={title} required/>
-                    <textarea placeholder='Descrição' onChange={(e) => setDescription(e.target.value)} value={description} required />
-                    <input type='number' placeholder='Valor' onChange={(e) => setValue(e.target.value)} value={value} required />
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <input placeholder='Titulo' name='title' ref={register({required:'Required'})} />
+                    <ErrorMessage className='inputError' errors={errors} name="title" as="span" />
+
+                    <textarea placeholder='Descrição' name='description' ref={register({required:'Required', minLength:{value:10, message:'Min length 10'}})} />
+                    <ErrorMessage className='inputError' errors={errors} name="description" as="span" />
+
+                    <input type='number' placeholder='Valor' min='0' name='value' ref={register({required:'Required'})} />
+                    <ErrorMessage className='inputError' errors={errors} name="value" as="span" />
                     
-                    <button type='submit'>Editar</button>
+                    <button className='button' type='submit'>Editar</button>
                 </form>
 
             </div>

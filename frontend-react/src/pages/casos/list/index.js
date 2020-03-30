@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory, Link } from 'react-router-dom'
 import { FiPower, FiTrash2, FiEdit } from 'react-icons/fi'
+import { toast } from 'react-toastify';
+
 import logoImg from '../../../assets/logo.svg'
 
 import api from '../../../services/api'
@@ -53,9 +55,12 @@ export default function Casos() {
         }
     }
     
-    function removeCaso(id){
+    function removeCaso(id, title){
         api.delete(`/casos/${id}`)
-        .then(response => setCasos(casos.filter(caso => caso.id!==id)))
+        .then(response => {
+            setCasos(casos.filter(caso => caso.id!==id))
+            toast.info(`Caso: ${title} Removido`)
+        })
         .catch(error => {
             if(error.response.status === 401){
                 logOut()
@@ -79,7 +84,7 @@ export default function Casos() {
                 
             </div>
 
-            { casos.length == 0 && <div className='semCaso'><p>Cadastre um Caso!</p></div>}
+            { casos.length === 0 && <div className='semCaso'><p>Cadastre um Caso!</p></div>}
             { casos.length > 0 &&
                 <ul>
                     { casos.map( caso => (
@@ -91,10 +96,10 @@ export default function Casos() {
                         <div className='description'>
                         <p>{caso.description}</p>   
                         </div>
-                        <span className='edit' onClick={()=>{history.push(`/casos/edit/${caso.id}`,{caso})}}>
+                        <span className='edit' onClick={()=>{history.push(`/casos/edit/${caso.id}`,{ caso })}}>
                             <FiEdit size={20} color='#059142'/>
                         </span>   
-                        <span className='trash' onClick={()=>{removeCaso(caso.id)}}>
+                        <span className='trash' onClick={()=>{removeCaso(caso.id, caso.title)}}>
                             <FiTrash2 size={20} color='red'/>
                         </span>   
                         
