@@ -16,7 +16,15 @@ Cronograma:
         - [x] Autenticação melhorada, ( email + senha) ong_id salva em cookie de sessão
         - [x] Documentação da API -  :ledger: [PT_BR](./backend/API_DOC_PT_BR.md) | :ledger: [EN_US](./backend/API_DOC_EN.md)
         - [ ] Tests :hammer:
-  - [ ] React :hammer:
+  - [x] React :heavy_check_mark:
+      - [x] Axios
+      - [x] React Icons
+      - [x] Intl - ( Internacionalização de informações)
+      - Adição Pessoal
+        - [x] Node-sass ( utilizando scss )
+        - [x] React-Hook-Form ( Validação de formulários no frontend )
+        - [x] React-Toastify ( Pop-up messages para informaçoes das requisicões)
+        - [ ] Tests :hammer:
   - [ ] React Native :hammer:
 
 
